@@ -16,6 +16,7 @@ public final class StringCalculator implements Loggable {
 
 	private static int callCount = 0;
 	
+	
 	/**
 	 * Add numbers in a string
 	 * @param input The numbers represented

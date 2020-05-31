@@ -25,3 +25,10 @@
 		- any other delimiter (eg. &)
 			- one character
 			- two characters
+- Throw exception for negative number
+	- cases
+		- one negative number
+		- multiple negatives
+- Get call count
+- Ignore numbers greater than or equal to 1000
+- Support delimiters of any length

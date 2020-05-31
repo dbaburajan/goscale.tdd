@@ -127,4 +127,9 @@ public final class StringCalculatorTest implements Loggable {
 	public void testAddWithGreaterThanThousandNumber() throws Exception {
 		assertNotEquals(1025, calculator.add("//;\n1001;20\n3,1"));
 	}
+	
+	@Test
+	public void testAddWithMultipleDelimiters() throws Exception {
+		assertEquals(10, calculator.add("//[***]\n1***2***3,4"));
+	}
 }
