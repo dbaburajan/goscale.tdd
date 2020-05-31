@@ -1,6 +1,17 @@
 # goscale.tdd
 ## Test Assignment for GoScale
-### Darshan <dbaburaj@Divya>
+### Author : Darshan Baburajan <dbaburaj@Divya>
 
-Cases:
-1. Create java project
+#### Workflow
+- Create java project
+- Create StringCalculator.java
+	- 'add' method
+	- cases
+		- null input
+		- empty input
+		- one input
+		- two inputs
+		- more than 2 inputs
+- Add slf4j log dependency
+
+		
