@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Logger interface for it's corresponding implementations
+ * Logger interface for it's corresponding implementation
  * 
  * @author dbaburajan
  */

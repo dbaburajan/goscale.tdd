@@ -2,7 +2,6 @@ package application.string.events;
 
 import org.apache.commons.text.StringEscapeUtils;
 
-import application.string.util.AddOccuredImpl;
 import application.string.util.Loggable;
 
 /**
@@ -10,7 +9,7 @@ import application.string.util.Loggable;
  * 
  * @author dbaburajan
  */
-public final class PrintResult implements AddOccuredImpl, Loggable {
+public final class PrintResultEvent implements AddOccuredEvent, Loggable {
 
 	@Override
 	public void addOccured(final String input, final int result) {

@@ -34,8 +34,9 @@ public final class StringUtil {
 	
 	/**
 	 * Remove null input from the string
-	 * @param str
-	 * @return
+	 * @param str The input string whose null
+	 * 		value is to be removed
+	 * @return The non-null strinng value
 	 */
 	public static String removeNull(final String str) {
 		return (StringUtil.isNullOrEmpty(str)) ? StringUtil.EMPTY : str;

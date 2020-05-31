@@ -2,9 +2,14 @@
 ## Test Assignment for GoScale
 ### Author : Darshan Baburajan <dbaburaj@Divya>
 
-####Dependencies
-- org.slf4j (for logging)
-- commons.text (for logging input without special characters)
+#### Dependencies
+##### Logging
+- slf4j-api-1.7.25.jar
+- logback-classic-1.1.11.jar
+- logback-core-1.1.11.jar
+##### Readable logging
+- commons.text-1.8.jar
+- commons-lang3-3.9.jar
 
 #### Workflow
 - Create java project

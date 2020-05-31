@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import application.string.events.PrintResult;
+import application.string.events.PrintResultEvent;
 import application.string.exceptions.NegativeNumberException;
 import application.string.util.Loggable;
 import application.string.util.StringUtil;
@@ -28,7 +28,7 @@ public final class StringCalculatorTest implements Loggable {
 	public static void init() {
 		calculator = new StringCalculator();
 		
-		calculator.registerEvent(new PrintResult());
+		calculator.registerEvent(new PrintResultEvent());
 	}
 	
 	@AfterClass
@@ -161,7 +161,7 @@ public final class StringCalculatorTest implements Loggable {
 	@Test
 	public void testAddWithRegisteringEvent() throws Exception {
 		final StringCalculator calc = new StringCalculator();
-		calc.registerEvent(new PrintResult());
+		calc.registerEvent(new PrintResultEvent());
 		
 		assertEquals(10, calc.add("//;\n1;2\n3,4"));
 	}

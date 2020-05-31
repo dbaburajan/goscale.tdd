@@ -1,13 +1,14 @@
-package application.string.util;
+package application.string.events;
 
 /**
- * Implementation to declare single method definition
- * for event occurring after the string addition calculation
+ * Interface to ensure StringCalculator invokers to declare 
+ * this single method definition for event occurring 
+ * after string addition calculation
  * 
  * @author dbaburajan
  */
 @FunctionalInterface
-public interface AddOccuredImpl {
+public interface AddOccuredEvent {
 	/**
 	 * Declare an event to be trigerred after sum is
 	 * calculated with the input 

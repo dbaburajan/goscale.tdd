@@ -15,10 +15,6 @@ public final class NegativeNumberException extends Exception implements Loggable
 	
 	public NegativeNumberException(final List<Integer> numbers) {
 		super("negatives not allowed: " + numbers.toString());
-		
-		// XXX
-		// Just logging an entry
-		// Can be removed
 		getLog().error(getMessage());
 	}
 }
