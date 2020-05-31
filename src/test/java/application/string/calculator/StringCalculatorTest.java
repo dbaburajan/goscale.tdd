@@ -2,10 +2,14 @@ package application.string.calculator;
 
 import static org.junit.Assert.*;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import application.string.exceptions.NegativeNumberException;
+import application.string.util.Loggable;
 import application.string.util.StringUtil;
 
 /**
@@ -13,13 +17,20 @@ import application.string.util.StringUtil;
  * 
  * @author dbaburajan
  */
-public final class StringCalculatorTest {
+public final class StringCalculatorTest implements Loggable {
 
-	private StringCalculator calculator;
+	private static StringCalculator calculator;
+	
+	private static final Logger log = LoggerFactory.getLogger(StringCalculatorTest.class);
 	
 	@Before
 	public void init() {
 		calculator = new StringCalculator();
+	}
+	
+	@AfterClass
+	public static void end() {
+		log.info("Total call count of StringCalculator.add method is -> " + calculator.getCallCount());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -109,6 +120,8 @@ public final class StringCalculatorTest {
 	
 	@Test(expected = NegativeNumberException.class)
 	public void testAddWithMultipleNegativeNumbers() throws Exception {
-		assertNotEquals(6, calculator.add("//&\n1&-2\n-3,4"));
+		final int sum = calculator.add("//&\n1&-2\n-3,4");
+		System.out.println("Call count " + calculator.getCallCount());
+		assertNotEquals(6, sum);
 	}
 }

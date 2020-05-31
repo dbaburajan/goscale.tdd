@@ -14,6 +14,8 @@ import application.string.util.StringUtil;
  */
 public final class StringCalculator implements Loggable {
 
+	private static int callCount = 0;
+	
 	/**
 	 * Add numbers in a string
 	 * @param input The numbers represented
@@ -23,6 +25,8 @@ public final class StringCalculator implements Loggable {
 	 * @throws NegativeNumberException 
 	 */
 	public int add(final String input) throws NegativeNumberException {
+		callCount++;
+
 		if (input == null) {
 			throw new IllegalArgumentException("input cannot be null");
 		}
@@ -52,6 +56,15 @@ public final class StringCalculator implements Loggable {
 		final String[] numbers = numStr.split(regexPtn);
 		
 		return add(numbers);
+	}
+	
+	/**
+	 * Get the count of times add method was called
+	 * @return The total number of times
+	 * add method was called
+	 */
+	public int getCallCount() {
+		return callCount;
 	}
 	
 	private int add(final String[] numbers) throws NegativeNumberException {
