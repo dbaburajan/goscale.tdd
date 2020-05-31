@@ -70,4 +70,34 @@ public final class StringCalculatorTest {
 	public void testAddWithDualDelimiters() {
 		assertEquals(10, calculator.add("1,2\n3,4"));
 	}
+	
+	@Test
+	public void testAddWithSeparateDelimiterInvalidSyntax() {
+		assertNotEquals(10, calculator.add("//;1;2\n3,4"));
+	}
+	
+	@Test(expected = UnsupportedOperationException.class)
+	public void testAddWithSeparateDelimiterInvalidSyntaxWithoutNextLineInInput() {
+		assertNotEquals(10, calculator.add("//;1;2,3,4"));
+	}
+	
+	@Test
+	public void testAddWithSeparateDelimiterAsSemicolon() {
+		assertEquals(10, calculator.add("//;\n1;2\n3,4"));
+	}
+	
+	@Test
+	public void testAddWithSeparateDelimiterAsNextline() {
+		assertEquals(10, calculator.add("//\n\n1\n2\n3,4"));
+	}
+	
+	@Test
+	public void testAddWithSeparateDelimiterAsOneCharacter() {
+		assertEquals(10, calculator.add("//&\n1&2\n3,4"));
+	}
+	
+	@Test
+	public void testAddWithSeparateDelimiterAsTwoCharacters() {
+		assertEquals(10, calculator.add("//&%\n1&%2\n3,4"));
+	}
 }

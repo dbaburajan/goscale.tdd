@@ -17,4 +17,11 @@
 - Allow 'new line' as delimiter '\n'
 	- cases
 		- one delimiter
-		- multiple delimiters	
+		- multiple delimiters
+- Support different delimiters
+	- cases
+		- ; delimiter
+		- \n delimiter
+		- any other delimiter (eg. &)
+			- one character
+			- two characters

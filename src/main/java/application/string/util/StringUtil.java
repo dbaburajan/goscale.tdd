@@ -33,13 +33,22 @@ public final class StringUtil {
 	}
 	
 	/**
-	 * Remove null and convert the string into integer
+	 * Remove null input from the string
+	 * @param str
+	 * @return
+	 */
+	public static String removeNull(final String str) {
+		return (StringUtil.isNullOrEmpty(str)) ? StringUtil.EMPTY : str;
+	}
+	
+	/**
+	 * Convert the string into integer
 	 * @param str The string input to convert
 	 * @return The integer value of the supplied string,
 	 * 		If the string value cannot be converted into
 	 * 		integer, then it will return 0
 	 */
-	public static int removeNull(final String str) {
+	public static int convert(final String str) {
 		if (StringUtil.isNullOrEmpty(str)) {
 			return 0;
 		}
