@@ -43,6 +43,11 @@ public final class StringCalculatorTest {
 	
 	@Test
 	public void testAddMoreThanTwoInputs() {
-		assertEquals(0, calculator.add("1,2,3"));
+		assertEquals(6, calculator.add("1,2,3"));
+	}
+	
+	@Test
+	public void testAddRandomInputs() {
+		assertEquals(150, calculator.add("15,15,20,100"));
 	}
 }

@@ -24,11 +24,6 @@ public final class StringCalculator implements Loggable {
 		
 		final String[] numbers = numStr.split(StringUtil.COMMA_DELIMITER);
 		
-		if (numbers.length > 2) {
-			getLog().warn("Count of numbers greater than 2; for string [" + numStr + "]");
-			return 0;
-		}
-		
 		final int sum = add(numbers);
 		getLog().info("Sum of numbers [" + numStr + "] is " + sum);
 		

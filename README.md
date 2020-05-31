@@ -13,5 +13,6 @@
 		- two inputs
 		- more than 2 inputs
 - Add slf4j log dependency
+- Allow more than 2 inputs
 
 		
