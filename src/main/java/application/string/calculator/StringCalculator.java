@@ -38,7 +38,8 @@ public final class StringCalculator implements Loggable {
 			if (parts.length == 2) {
 				if (parts[0].indexOf('[') != parts[0].lastIndexOf('[')) {
 					// Multiple delimiter case
-					delimiter = parts[0].replace("]", "]|");
+					final String replacedStr = parts[0].replace("]", "]|");
+					delimiter = replacedStr.substring(2, replacedStr.lastIndexOf('|'));
 				} else {
 					delimiter = parts[0].substring(2);
 				}
@@ -59,7 +60,7 @@ public final class StringCalculator implements Loggable {
 		}
 		final String[] numbers = numStr.split(regexPtn);
 		
-		return add(numbers);
+		return sum(numbers);
 	}
 	
 	/**
@@ -71,7 +72,7 @@ public final class StringCalculator implements Loggable {
 		return callCount;
 	}
 	
-	private int add(final String[] numbers) throws NegativeNumberException {
+	private int sum(final String[] numbers) throws NegativeNumberException {
 		int sum = 0;
 		
 		final List<Integer> negativeNos = new ArrayList<Integer>();
