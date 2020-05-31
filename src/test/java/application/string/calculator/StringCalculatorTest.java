@@ -120,8 +120,11 @@ public final class StringCalculatorTest implements Loggable {
 	
 	@Test(expected = NegativeNumberException.class)
 	public void testAddWithMultipleNegativeNumbers() throws Exception {
-		final int sum = calculator.add("//&\n1&-2\n-3,4");
-		System.out.println("Call count " + calculator.getCallCount());
-		assertNotEquals(6, sum);
+		assertNotEquals(6, calculator.add("//&\n1&-2\n-3,4"));
+	}
+	
+	@Test
+	public void testAddWithGreaterThanThousandNumber() throws Exception {
+		assertNotEquals(1025, calculator.add("//;\n1001;20\n3,1"));
 	}
 }

@@ -75,6 +75,9 @@ public final class StringCalculator implements Loggable {
 			final int value = StringUtil.convert(no);
 			if (value < 0) {
 				negativeNos.add(value);
+			} else if (value > 1000) {
+				getLog().warn("Ignoring greater than 1000 number: " + value);
+				continue;
 			}
 			sum += value;
 		}
