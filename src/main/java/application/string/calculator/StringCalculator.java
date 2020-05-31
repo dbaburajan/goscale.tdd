@@ -1,5 +1,8 @@
 package application.string.calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import application.string.exceptions.NegativeNumberException;
 import application.string.util.Loggable;
 import application.string.util.StringUtil;
@@ -54,12 +57,17 @@ public final class StringCalculator implements Loggable {
 	private int add(final String[] numbers) throws NegativeNumberException {
 		int sum = 0;
 		
+		final List<Integer> negativeNos = new ArrayList<Integer>();
 		for (final String no : numbers) {
 			final int value = StringUtil.convert(no);
 			if (value < 0) {
-				throw new NegativeNumberException(value);
+				negativeNos.add(value);
 			}
 			sum += value;
+		}
+		
+		if (!negativeNos.isEmpty()) {
+			throw new NegativeNumberException(negativeNos);
 		}
 		
 		return sum;

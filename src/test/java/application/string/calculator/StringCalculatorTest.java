@@ -106,4 +106,9 @@ public final class StringCalculatorTest {
 	public void testAddWithNegativeNumber() throws Exception {
 		assertNotEquals(6, calculator.add("//&\n1&-2\n3,4"));
 	}
+	
+	@Test(expected = NegativeNumberException.class)
+	public void testAddWithMultipleNegativeNumbers() throws Exception {
+		assertNotEquals(6, calculator.add("//&\n1&-2\n-3,4"));
+	}
 }
