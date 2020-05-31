@@ -3,11 +3,12 @@ package application.string.calculator;
 import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import application.string.events.PrintResult;
 import application.string.exceptions.NegativeNumberException;
 import application.string.util.Loggable;
 import application.string.util.StringUtil;
@@ -23,13 +24,15 @@ public final class StringCalculatorTest implements Loggable {
 	
 	private static final Logger log = LoggerFactory.getLogger(StringCalculatorTest.class);
 	
-	@Before
-	public void init() {
+	@BeforeClass
+	public static void init() {
 		calculator = new StringCalculator();
+		
+		calculator.registerEvent(new PrintResult());
 	}
 	
 	@AfterClass
-	public static void end() {
+	public static void terminate() {
 		log.info("Total call count of StringCalculator.add method is -> " + calculator.getCallCount());
 	}
 	
@@ -146,5 +149,20 @@ public final class StringCalculatorTest implements Loggable {
 	@Test
 	public void testAddWithMultipleDelimitersOfSizeGreaterThanOne() throws Exception {
 		assertEquals(6, calculator.add("//[**][%%]\n1**2%%3"));
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testAddWithoutRegisteringEvent() throws Exception {
+		final StringCalculator calc = new StringCalculator();
+		
+		assertEquals(10, calc.add("//;\n1;2\n3,4"));
+	}
+	
+	@Test
+	public void testAddWithRegisteringEvent() throws Exception {
+		final StringCalculator calc = new StringCalculator();
+		calc.registerEvent(new PrintResult());
+		
+		assertEquals(10, calc.add("//;\n1;2\n3,4"));
 	}
 }

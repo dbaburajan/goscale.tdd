@@ -2,6 +2,10 @@
 ## Test Assignment for GoScale
 ### Author : Darshan Baburajan <dbaburaj@Divya>
 
+####Dependencies
+- org.slf4j (for logging)
+- commons.text (for logging input without special characters)
+
 #### Workflow
 - Create java project
 - Create StringCalculator.java
@@ -31,4 +35,6 @@
 		- multiple negatives
 - Get call count
 - Ignore numbers greater than or equal to 1000
+- Support delimiters of one character
 - Support delimiters of any length
+- Register event against add() method

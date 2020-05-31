@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.string.exceptions.NegativeNumberException;
+import application.string.util.AddOccuredImpl;
 import application.string.util.Loggable;
 import application.string.util.StringUtil;
 
@@ -15,6 +16,8 @@ import application.string.util.StringUtil;
 public final class StringCalculator implements Loggable {
 
 	private static int callCount = 0;
+	
+	private AddOccuredImpl event;
 	
 	/**
 	 * Add numbers in a string
@@ -60,7 +63,10 @@ public final class StringCalculator implements Loggable {
 		}
 		final String[] numbers = numStr.split(regexPtn);
 		
-		return sum(numbers);
+		final int sum = sum(numbers);
+		event.addOccured(input, sum);
+		
+		return sum;
 	}
 	
 	/**
@@ -70,6 +76,10 @@ public final class StringCalculator implements Loggable {
 	 */
 	public int getCallCount() {
 		return callCount;
+	}
+	
+	public void registerEvent(final AddOccuredImpl event) {
+		this.event = event;
 	}
 	
 	private int sum(final String[] numbers) throws NegativeNumberException {
