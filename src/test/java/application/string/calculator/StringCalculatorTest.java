@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import application.string.exceptions.NegativeNumberException;
 import application.string.util.StringUtil;
 
 /**
@@ -22,82 +23,87 @@ public final class StringCalculatorTest {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testAddNullInput() {
+	public void testAddNullInput() throws Exception {
 		calculator.add(null);
 	}
 
 	@Test
-	public void testAddEmptyInput() {
+	public void testAddEmptyInput() throws Exception {
 		assertEquals(0, calculator.add(StringUtil.EMPTY));
 	}
 	
 	@Test
-	public void testAddOneInput() {
+	public void testAddOneInput() throws Exception {
 		assertEquals(1, calculator.add("1"));
 	}
 	
 	@Test
-	public void testAddTwoInputs() {
+	public void testAddTwoInputs() throws Exception {
 		assertEquals(3, calculator.add("1,2"));
 	}
 	
 	@Test
-	public void testAddMoreThanTwoInputs() {
+	public void testAddMoreThanTwoInputs() throws Exception {
 		assertEquals(6, calculator.add("1,2,3"));
 	}
 	
 	@Test
-	public void testAddRandomInputs() {
+	public void testAddRandomInputs() throws Exception {
 		assertEquals(150, calculator.add("15,15,20,100"));
 	}
 	
 	@Test
-	public void testAddOnlyNextLineDelimiterInput() {
+	public void testAddOnlyNextLineDelimiterInput() throws Exception {
 		assertEquals(0, calculator.add("\n"));
 	}
 	
 	@Test
-	public void testAddOnlyCommaDelimiterInput() {
+	public void testAddOnlyCommaDelimiterInput() throws Exception {
 		assertEquals(0, calculator.add(","));
 	}
 	
 	@Test
-	public void testAddNextLineDelimiter() {
+	public void testAddNextLineDelimiter() throws Exception {
 		assertEquals(10, calculator.add("1\n2\n3\n4"));
 	}
 	
 	@Test
-	public void testAddWithDualDelimiters() {
+	public void testAddWithDualDelimiters() throws Exception {
 		assertEquals(10, calculator.add("1,2\n3,4"));
 	}
 	
 	@Test
-	public void testAddWithSeparateDelimiterInvalidSyntax() {
+	public void testAddWithSeparateDelimiterInvalidSyntax() throws Exception {
 		assertNotEquals(10, calculator.add("//;1;2\n3,4"));
 	}
 	
 	@Test(expected = UnsupportedOperationException.class)
-	public void testAddWithSeparateDelimiterInvalidSyntaxWithoutNextLineInInput() {
+	public void testAddWithSeparateDelimiterInvalidSyntaxWithoutNextLineInInput() throws Exception {
 		assertNotEquals(10, calculator.add("//;1;2,3,4"));
 	}
 	
 	@Test
-	public void testAddWithSeparateDelimiterAsSemicolon() {
+	public void testAddWithSeparateDelimiterAsSemicolon() throws Exception {
 		assertEquals(10, calculator.add("//;\n1;2\n3,4"));
 	}
 	
 	@Test
-	public void testAddWithSeparateDelimiterAsNextline() {
+	public void testAddWithSeparateDelimiterAsNextline() throws Exception {
 		assertEquals(10, calculator.add("//\n\n1\n2\n3,4"));
 	}
 	
 	@Test
-	public void testAddWithSeparateDelimiterAsOneCharacter() {
+	public void testAddWithSeparateDelimiterAsOneCharacter() throws Exception {
 		assertEquals(10, calculator.add("//&\n1&2\n3,4"));
 	}
 	
 	@Test
-	public void testAddWithSeparateDelimiterAsTwoCharacters() {
+	public void testAddWithSeparateDelimiterAsTwoCharacters() throws Exception {
 		assertEquals(10, calculator.add("//&%\n1&%2\n3,4"));
+	}
+	
+	@Test(expected = NegativeNumberException.class)
+	public void testAddWithNegativeNumber() throws Exception {
+		assertNotEquals(6, calculator.add("//&\n1&-2\n3,4"));
 	}
 }

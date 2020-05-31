@@ -1,5 +1,6 @@
 package application.string.calculator;
 
+import application.string.exceptions.NegativeNumberException;
 import application.string.util.Loggable;
 import application.string.util.StringUtil;
 
@@ -16,8 +17,9 @@ public final class StringCalculator implements Loggable {
 	 * 		by a string 
 	 * @return The addition of all numbers 
 	 * 		present in the supplied string
+	 * @throws NegativeNumberException 
 	 */
-	public int add(final String input) {
+	public int add(final String input) throws NegativeNumberException {
 		if (input == null) {
 			throw new IllegalArgumentException("input cannot be null");
 		}
@@ -46,17 +48,18 @@ public final class StringCalculator implements Loggable {
 		}
 		final String[] numbers = numStr.split(regexPtn);
 		
-		final int sum = add(numbers);
-		getLog().info("Sum of numbers [" + numStr + "] is " + sum);
-		
-		return sum;
+		return add(numbers);
 	}
 	
-	private int add(final String[] numbers) {
+	private int add(final String[] numbers) throws NegativeNumberException {
 		int sum = 0;
 		
 		for (final String no : numbers) {
-			sum += StringUtil.convert(no);
+			final int value = StringUtil.convert(no);
+			if (value < 0) {
+				throw new NegativeNumberException(value);
+			}
+			sum += value;
 		}
 		
 		return sum;
