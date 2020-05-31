@@ -129,7 +129,22 @@ public final class StringCalculatorTest implements Loggable {
 	}
 	
 	@Test
-	public void testAddWithMultipleDelimiters() throws Exception {
+	public void testAddWithDelimitersOfAnyLength() throws Exception {
 		assertEquals(10, calculator.add("//[***]\n1***2***3,4"));
+	}
+	
+	@Test
+	public void testAddWithMultipleDelimiters() throws Exception {
+		assertEquals(6, calculator.add("//[*][%]\n1*2%3"));
+	}
+	
+	@Test
+	public void testAddWithMultipleAndDefaultDelimiters() throws Exception {
+		assertEquals(10, calculator.add("//[;][%]\n1,2%3;4"));
+	}
+	
+	@Test
+	public void testAddWithMultipleDelimitersOfSizeGreaterThanOne() throws Exception {
+		assertEquals(6, calculator.add("//[**][%%]\n1**2%%3"));
 	}
 }

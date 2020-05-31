@@ -16,7 +16,6 @@ public final class StringCalculator implements Loggable {
 
 	private static int callCount = 0;
 	
-	
 	/**
 	 * Add numbers in a string
 	 * @param input The numbers represented
@@ -34,11 +33,15 @@ public final class StringCalculator implements Loggable {
 		
 		final String delimiter;
 		final String numStr;
-		// Input pattern with delimiters "//[delimiter]\n[numbers...]"
 		if (input.startsWith("//")) {
 			final String[] parts = input.split("\n", 2);
 			if (parts.length == 2) {
-				delimiter = parts[0].substring(2);
+				if (parts[0].indexOf('[') != parts[0].lastIndexOf('[')) {
+					// Multiple delimiter case
+					delimiter = parts[0].replace("]", "]|");
+				} else {
+					delimiter = parts[0].substring(2);
+				}
 				numStr = parts[1];
 			} else {
 				throw new UnsupportedOperationException("Invalid syntax -> " + input);
