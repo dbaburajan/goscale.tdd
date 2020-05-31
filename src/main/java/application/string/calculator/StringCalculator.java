@@ -22,7 +22,7 @@ public final class StringCalculator implements Loggable {
 			throw new IllegalArgumentException("input cannot be null");
 		}
 		
-		final String[] numbers = numStr.split(StringUtil.COMMA_DELIMITER);
+		final String[] numbers = numStr.split(StringUtil.COMMA_DELIMITER + StringUtil.REGEX_OR + StringUtil.NEXT_LINE_DELIMITER);
 		
 		final int sum = add(numbers);
 		getLog().info("Sum of numbers [" + numStr + "] is " + sum);

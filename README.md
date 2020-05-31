@@ -14,5 +14,7 @@
 		- more than 2 inputs
 - Add slf4j log dependency
 - Allow more than 2 inputs
-
-		
+- Allow 'new line' as delimiter '\n'
+	- cases
+		- one delimiter
+		- multiple delimiters	
