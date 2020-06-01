@@ -9,12 +9,11 @@ import org.slf4j.LoggerFactory;
  * @author dbaburajan
  */
 public interface Loggable {
-
-	/**
-	 * Get a logger corresponding to the respective class
-	 * @return Logger for the called-in class
-	 */
-	default Logger getLog() {
-		return LoggerFactory.getLogger(getClass());
-	}
+    /**
+     * Get a logger corresponding to the respective class
+     * @return Logger for the called-in class
+     */
+    default Logger getLog() {
+        return LoggerFactory.getLogger(getClass());
+    }
 }
